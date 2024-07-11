@@ -1,20 +1,32 @@
 import React from 'react'
+import { Navbar, Container } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { TbPokeball } from "react-icons/tb";
 
-const Navbar = () => {
+
+const NavBar = () => {
   return (
-    
-        <div className='navbar d-flex justify-content-end'>
-            <NavLink className="mx-3" to={"/"}> 
+    <Navbar className='bg-body-tertiary d-flex w-100'>
+        <Container>
+        <Navbar.Brand href="/"><h1><TbPokeball /></h1></Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          
+          <NavLink className="mx-3" to={"/"}> 
                 Home
             </NavLink>
             |
             <NavLink className="mx-3" to={"/pokemones"}>
                 Pokemones
             </NavLink>
+          
+        </Navbar.Collapse>
+      </Container>
+        <div className='justify-content-end'>
+            
         </div>
-    
+    </Navbar>
   )
 }
 
-export default Navbar
+export default NavBar
