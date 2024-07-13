@@ -5,6 +5,7 @@ import NavBar from './componets/Navbar'
 import Home from './views/Home'
 import Pokemones from './views/Pokemones'
 import { PokeProvaider } from './context/PokeContext'
+import PokeViews from './views/PokeViews'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route  path='/' element={<Home />}/>
-        <Route path='/pokemones' element={<Pokemones />}/>        
+        <Route path='/pokemones' element={<Pokemones />}/>
+        <Route path='/pokemones/:id' element={<PokeViews />} />        
       </Routes>
     </PokeProvaider>
   )
