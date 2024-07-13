@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import SpinnerLoad from '../componets/Spinner'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -10,7 +12,13 @@ const PokeViews = () => {
     const [nom, setNom] = useState(null)
     const [img, setImg] = useState(null)
     const [info, setInfo] = useState([])
+    const [load, setLoad] = useState(true)
     const {id} = useParams();
+    const back = useNavigate();
+
+    const goBack=()=>{
+        back('/pokemones')
+    }
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -19,9 +27,14 @@ const PokeViews = () => {
             setNom(data.name.toUpperCase())
             setImg(data.sprites.other.dream_world.front_default)
             setInfo(data.stats)
+            setLoad(false)
         }
         )
     }, [id])
+
+    if(load){
+        return <SpinnerLoad />
+    }
 
   return (
     <Container className='d-flex  justify-content-center align-items-center  w-50 h-75 mt-5'>
@@ -38,6 +51,7 @@ const PokeViews = () => {
                 }
             </ul>
       </div>
+         <Button onClick={goBack}>¡Elige otro Pokemon!</Button>       
     </Container>
   )
 }
