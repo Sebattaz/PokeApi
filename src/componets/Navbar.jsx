@@ -1,30 +1,31 @@
-import React from 'react'
-import { Navbar, Container } from 'react-bootstrap'
+
+import { Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { TbPokeball } from "react-icons/tb";
 
 
 const NavBar = () => {
-  return (
-    <Navbar className='bg-body-tertiary d-flex w-100'>
-        <Container>
-        <Navbar.Brand href="/"><h1><TbPokeball /></h1></Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          
-          <NavLink className="mx-3" to={"/"}> 
-                Home
-            </NavLink>
-            |
-            <NavLink className="mx-3" to={"/pokemones"}>
-                Pokemones
-            </NavLink>
-          
+
+    const setActive =({isActive})=>(isActive ? "active" : undefined);
+  
+    return (
+    <Navbar className='bg-secondary d-flex' expand='lg'>
+        
+        <Navbar.Brand className='mx-5' href="/">
+          <h1><TbPokeball /></h1>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav>
+            <Nav.Link as={NavLink} className={`${setActive} mx-3`}  to={"/"}> 
+               <h3>Home</h3> 
+            </Nav.Link>
+            <h3>|</h3>
+            <Nav.Link as={NavLink} className={`${setActive} mx-3`} to={"/pokemones"}>
+                <h3>Pokemones</h3>
+            </Nav.Link>
+          </Nav>
         </Navbar.Collapse>
-      </Container>
-        <div className='justify-content-end'>
-            
-        </div>
     </Navbar>
   )
 }
